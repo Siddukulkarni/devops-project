@@ -1,0 +1,26 @@
+name: My First CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Welcome Message
+        run: echo "Welcome to GitHub Actions!"
+
+      - name: Check Project Files
+        run: ls -R
+
+      - name: Verify HTML File
+        run: test -f app/index.html
+
+      - name: Success Message
+        run: echo "CI Pipeline Completed Successfully!"
