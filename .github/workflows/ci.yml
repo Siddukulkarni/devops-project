@@ -1,7 +1,11 @@
-name: My First CI Pipeline
+name: DevOps CI Pipeline
 
 on:
   push:
+    branches:
+      - main
+
+  pull_request:
     branches:
       - main
 
@@ -13,14 +17,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Welcome Message
-        run: echo "Welcome to GitHub Actions!"
-
       - name: Check Project Files
         run: ls -R
 
       - name: Verify HTML File
         run: test -f app/index.html
 
-      - name: Success Message
-        run: echo "CI Pipeline Completed Successfully!"
+      - name: Test Website Content
+        run: grep -q "Welcome to My DevOps Project" app/index.html
+
+      - name: CI Success
+        run: echo "All tests passed successfully!"
